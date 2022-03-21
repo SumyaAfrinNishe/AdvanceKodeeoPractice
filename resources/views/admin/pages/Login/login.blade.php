@@ -97,6 +97,12 @@ Password
                     </button>
                 </div>
 
+                <div class="container-login100-form-btn" style="margin-left:200px;margin-top:10px;">
+                    <a href="{{route('login.facebook')}}" class="btn btn-primary">
+                        <i class="fa-brands fa-facebook"></i>
+                        Login With Facebook</a>
+                </div>
+
             </form>
         </div>
     </div>

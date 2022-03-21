@@ -34,6 +34,10 @@ use App\Http\Controllers\Admin\LoginController;
      })->name('admin.home');
 
      Route::get('/logout',[LoginController::class,'logout'])->name('admin.logout');
+
+     Route::get('auth/facebook', [LoginController::class, 'facebookRedirect'])->name('login.facebook');
+     Route::get('auth/facebook/callback', [LoginController::class, 'loginWithFacebook']);
+
     
 
 // categories
