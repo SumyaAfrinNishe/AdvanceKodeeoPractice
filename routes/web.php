@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ClothController;
 use App\Http\Controllers\Admin\SellerController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,10 +25,15 @@ use App\Http\Controllers\Admin\UserController;
 
 // admin
 //  Route::group(['prefix'=>'admin','as'=>'admin.'], function(){
+    Route::get('/login',[LoginController::class,'login'])->name('admin.login');
+    Route::post('/do/login',[LoginController::class,'doLogin'])->name('admin.doLogin');
 
+    Route::group(['prefix'=>'/','middleware'=>['auth']],function () {
     Route::get('/', function () {
         return view('admin.master');
-     });
+     })->name('admin.home');
+
+     Route::get('/logout',[LoginController::class,'logout'])->name('admin.logout');
     
 
 // categories
@@ -39,12 +45,6 @@ Route::post('/category_update/{category_id}',[CategoriesController::class, 'upda
 Route::get('/category_delete/{category_id}',[CategoriesController::class,'delete'])->name('category.delete');
 
 
- 
-// });
-
-Route::get('/', function () {
-    return view('admin.master');
-});
 
 //for cloth
 Route::get('/add/cloth',[ClothController::class,'addCloth'])->name('add.cloth');
@@ -80,5 +80,8 @@ Route::get('/delete/user/{user_id}',[UserController::class,'deleteUser'])->name(
 
 Route::get('/permissions/assign/{role_id}',[RoleController::class,'assignForm'])->name('permission.assign.form');
 Route::post('/permissions/assign/store',[RoleController::class,'assignStore'])->name('permission.assign.store');
+
+
+});
 
 
