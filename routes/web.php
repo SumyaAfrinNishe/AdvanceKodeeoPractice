@@ -28,17 +28,17 @@ use App\Http\Controllers\Admin\LoginController;
     Route::get('/login',[LoginController::class,'login'])->name('admin.login');
     Route::post('/do/login',[LoginController::class,'doLogin'])->name('admin.doLogin');
 
-    Route::group(['prefix'=>'/','middleware'=>['auth']],function () {
+    Route::get('auth/facebook', [LoginController::class, 'facebookRedirect'])->name('login.facebook');
+    Route::get('auth/facebook/callback', [LoginController::class, 'loginWithFacebook']);
+   
+
+    Route::group(['prefix'=>'/','middleware'=>'auth'],function () {
     Route::get('/', function () {
         return view('admin.master');
      })->name('admin.home');
 
      Route::get('/logout',[LoginController::class,'logout'])->name('admin.logout');
 
-     Route::get('auth/facebook', [LoginController::class, 'facebookRedirect'])->name('login.facebook');
-     Route::get('auth/facebook/callback', [LoginController::class, 'loginWithFacebook']);
-
-    
 
 // categories
 Route::get('/category_list',[CategoriesController::class, 'list'])->name('category.list');

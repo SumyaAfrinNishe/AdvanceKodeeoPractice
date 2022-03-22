@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -46,18 +46,17 @@ class LoginController extends Controller
 
             if($isUser){
                 Auth::login($isUser);
-                return redirect()->route('admin');
+                return redirect()->route('admin.home');
             }else{
                 $createUser = User::create([
                     'name' => $user->name,
                     'email' => $user->email,
-                    'role_id' => 1,
                     'facebook_id' => $user->id,
                     'password' => bcrypt('1234')
                 ]);
 
                 Auth::login($createUser);
-                return redirect()->route('admin');
+                return redirect()->route('admin.home');
             }
 
         } catch (\Throwable $exception) {
