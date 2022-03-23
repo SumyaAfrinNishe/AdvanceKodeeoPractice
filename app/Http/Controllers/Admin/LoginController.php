@@ -64,4 +64,36 @@ class LoginController extends Controller
         }
     }
 
-}
+    public function googleRedirect()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function loginWithGoogle()
+    {
+        try{
+            $user = Socialite::driver('google')->user();
+            $isUser = User::where('google_id', $user->id)->first();
+
+            if($isUser){
+                Auth::login($isUser);
+                return redirect()->route('admin.home');
+            }else{
+                $createUser = User::create([
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'google_id' => $user->id,
+                    'password' => bcrypt('1234')
+                ]);
+
+                Auth::login($createUser);
+                return redirect()->route('admin.home');
+            }
+
+        } catch (\Throwable $exception) {
+            dd($exception->getMessage());
+        }
+        }
+    }
+
+

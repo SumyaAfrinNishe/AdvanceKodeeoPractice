@@ -30,6 +30,9 @@ use App\Http\Controllers\Admin\LoginController;
 
     Route::get('auth/facebook', [LoginController::class, 'facebookRedirect'])->name('login.facebook');
     Route::get('auth/facebook/callback', [LoginController::class, 'loginWithFacebook']);
+
+    Route::get('/auth/google',[LoginController::class,'googleRedirect'])->name('login.google');
+    Route::get('/auth/google/callback',[LoginController::class,'loginWithGoogle']);
    
 
     Route::group(['prefix'=>'/','middleware'=>'auth'],function () {

@@ -103,6 +103,12 @@ Password
                         Login With Facebook</a>
                 </div>
 
+                <div class="container-login100-form-btn" style="margin-left:200px;margin-top:10px;">
+                    <a href="{{route('login.google')}}" class="btn btn-primary">
+                        <i class="fa-brands fa-google"></i>
+                        Login With Google</a>
+                </div>
+
             </form>
         </div>
     </div>
