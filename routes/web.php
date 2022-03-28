@@ -33,6 +33,12 @@ use App\Http\Controllers\Admin\LoginController;
 
     Route::get('/auth/google',[LoginController::class,'googleRedirect'])->name('login.google');
     Route::get('/auth/google/callback',[LoginController::class,'loginWithGoogle']);
+
+    Route::get('/forget-password',[LoginController::class,'forgetPassword'])->name('forget.password');
+    Route::post('/forget-password/post',[LoginController::class,'forgetPasswordPost'])->name('forget.password.post');
+
+    Route::get('/reset-password/{token}',[LoginController::class,'resetPassword'])->name('reset.password');
+    Route::post('/reset-password/post',[LoginController::class,'resetPasswordPost'])->name('reset.password.post');
    
 
     Route::group(['prefix'=>'/','middleware'=>'auth'],function () {

@@ -48,65 +48,24 @@
     <div class="container-login100">
         <div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
 
-            <form action="{{route('admin.doLogin')}}" method='POST' class="login100-form validate-form flex-sb flex-w">
+            <form action="{{route('forget.password.post')}}" method='POST' class="login100-form validate-form flex-sb flex-w">
                 @csrf
 
                 @if(session()->has('msg'))
                     <p class="alert alert-danger"><b>{{session()->get('msg')}}</b></p>
                 @endif
-                <span class="login100-form-title p-b-32">
-Account Login
-</span>
+
                 <span class="txt1 p-b-11">
-Email
+Enter Email
 </span>
                 <div class="wrap-input100 validate-input m-b-36" data-validate="UserEmail is required">
                     <input class="input100" type="email" name="email" value="admin@gmail.com">
                     <span class="focus-input100"></span>
                 </div>
-                <span class="txt1 p-b-11">
-Password
-</span>
-                <div class="wrap-input100 validate-input m-b-12" data-validate="Password is required">
-<span class="btn-show-pass">
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill"
-     viewBox="0 0 16 16">
-  <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-  <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-</svg>
-</span>
-                    <input class="input100" type="password" name="password">
-                    <span class="focus-input100"></span>
-                </div>
-                <div class="flex-sb-m w-full p-b-48">
-                    <div class="contact100-form-checkbox">
-                        <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-                        <label class="label-checkbox100" for="ckb1">
-                            Remember me
-                        </label>
-                    </div>
-                    <div>
-                        <a href="{{route('forget.password')}}" class="txt3">
-                            Forgot Password?
-                        </a>
-                    </div>
-                </div>
                 <div class="container-login100-form-btn">
                     <button class="login100-form-btn">
-                        Login
+                        Submit
                     </button>
-                </div>
-
-                <div class="container-login100-form-btn" style="margin-left:200px;margin-top:10px;">
-                    <a href="{{route('login.facebook')}}" class="btn btn-primary">
-                        <i class="fa-brands fa-facebook"></i>
-                        Login With Facebook</a>
-                </div>
-
-                <div class="container-login100-form-btn" style="margin-left:200px;margin-top:10px;">
-                    <a href="{{route('login.google')}}" class="btn btn-primary">
-                        <i class="fa-brands fa-google"></i>
-                        Login With Google</a>
                 </div>
 
             </form>
