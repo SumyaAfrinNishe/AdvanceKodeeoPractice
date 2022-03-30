@@ -41,7 +41,7 @@ use App\Http\Controllers\Admin\LoginController;
     Route::post('/reset-password/post',[LoginController::class,'resetPasswordPost'])->name('reset.password.post');
    
 
-    Route::group(['prefix'=>'/','middleware'=>'auth'],function () {
+    Route::group(['prefix'=>'/','middleware'=>'auth:web,admin'],function () {
     Route::get('/', function () {
         return view('admin.master');
      })->name('admin.home');

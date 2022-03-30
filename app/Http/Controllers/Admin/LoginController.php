@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Models\User;
+use App\Models\Admin;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ class LoginController extends Controller
       
         $userpost=$request->except('_token');
    
-        if(Auth::attempt($userpost))
+        if(Auth::guard('web')->attempt($userpost) || Auth::guard('admin')->attempt($userpost))
         {
             return redirect()->route('admin.home')->with('success','Login Successful');
         }
@@ -34,7 +35,7 @@ class LoginController extends Controller
 
     public function logout()
     {
-        Auth::logout();
+        Auth::guard('web')->logout() || Auth::guard('admin')->logout();
         return redirect()->route('admin.login')->with('success','Logging out.');
     }
 
