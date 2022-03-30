@@ -26,7 +26,8 @@ class LoginController extends Controller
    
         if(Auth::guard('web')->attempt($userpost) || Auth::guard('admin')->attempt($userpost))
         {
-            return redirect()->route('admin.home')->with('success','Login Successful');
+            Toastr::success('User Login Successfully','success');
+            return redirect()->route('admin.home');
         }
         else
         return redirect()->route('admin.login')->withErrors('error','Invalid user credentials');

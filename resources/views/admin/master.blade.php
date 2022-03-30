@@ -12,6 +12,7 @@
     <!-- Bootstrap core CSS -->
 <link href="{{url('/admin/css/bootstrap.css')}}" rel="stylesheet">
 
+<link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
     <!-- Add custom CSS here -->
     <link href="{{url('/admin/css/sb-admin.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -45,6 +46,10 @@
     <script src="{{url('/admin/js/chart-data-morris.js')}}"></script>
     <script src="{{url('/admin/js/jquery.tablesorter.js')}}"></script>
     <script src="{{url('/admin/js/tables.js')}}"></script>
+
+    <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+        <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+        {!! Toastr::message() !!}
 
   </body>
 </html>

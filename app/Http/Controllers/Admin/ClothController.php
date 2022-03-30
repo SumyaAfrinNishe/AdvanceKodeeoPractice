@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Cloth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 
 class ClothController extends Controller
 {
@@ -40,6 +41,7 @@ class ClothController extends Controller
         'cloth_price'=>$request->cloth_price,
         'cloth_image'=>$filename,
      ]);
+     Toastr::success('Cloth added successfully','success');
      return redirect()->route('cloth.list');
 }
 public function viewCloth($cloth_id)
