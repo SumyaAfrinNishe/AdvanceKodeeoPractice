@@ -1,66 +1,64 @@
 @extends('admin.master')
 @section('content')
-<style>
-	body{
-	 
-	   background: linear-gradient(to left, #ccccff 45%, #ccffff 95%);
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Yajra DataTable</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
+    <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+</head>
+<body>
+    
+<div class="container mt-5">
+    <h2 class="mb-4"> Yajra Datatables Example</h2>
+    <table class="table table-bordered yajra-datatable">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Details</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
    
-	}
-	 #customers {
-	   font-family: Arial, Helvetica, sans-serif;
-	   border-collapse: collapse;
-	   width: 100%;
-	 }
-	 .heading h2{
-	   text-align: center;
-	 }
-	 #customers td, #customers th {
-	   border: 1px solid #ddd;
-	   padding: 8px;
-	 }
-	 
-	 #customers tr:nth-child(even){background-color: #ccccff;}
-	 
-	 #customers tr:hover {background-color: #ddd;}
-	 
-	
-	 #customers th {
-		padding-top: 12px;
-		padding-bottom: 12px;
-		text-align: left;
-		background-color: #001313;
-		color: white;
-	  }
-	 </style>
+</body>
 
-     <div class="heading">
-		<h2>Sellers List</h2>
-	  </div>
-	  
-	  <br>
-	  {{-- <a class="btn btn-primary" href="{{route('admin.user.create')}}" role="button">Add</a> --}}
-	  <table id="customers">
-		<tr>
-		  <th>ID</th>
-		  <th>Image</th>
-		  <th>Name</th>
-		  <th>Email</th>
-		  <th>Address</th>
-		  <th>Contact</th>
-		  <th>Action</th>
-	  
-		</tr>
-	
-		  <td>abcd</td>
-		  <td>abcd</td>
-		  <td>abcd</td>
-		  <td>abcd</td>
-		  <td>abcd</td>
-		  <td>abcd</td>
-		  <td>abcd</td>
-	
-	  </table>
-
-	  <br>
-	  <a href="{{route('seller.create')}}" class="btn btn-primary">Add New Seller</a>
+@push('js')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript">
+  $(function () {
+    
+    var table = $('.yajra-datatable').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: "{{ route('seller.index') }}",
+        columns: [
+            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+            {data: 'name', name: 'name'},
+            {data: 'details', name: 'details'},
+           
+            {
+                data: 'action', 
+                name: 'action', 
+                orderable: true, 
+                searchable: true
+            },
+        ]
+    });
+    
+  });
+</script>
+</html>
 @endsection
+

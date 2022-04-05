@@ -1,27 +1,46 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use App\Models\Seller;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use DataTables;
 
 class SellerController extends Controller
 {
   public function sellerlist (){
-      return view('admin.pages.sellers.list');
+    $sellers=Seller::paginate(10);
+      return view('admin.pages.sellers.list',compact('sellers'));
 
   }
+
+  public function index(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = Seller::latest()->get();
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function($row){
+                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                    return $actionBtn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+    }
+
+
   public function sellercreate(){
     return view('admin.pages.sellers.form');
   }
+
+
+
   public function sellerstore(Request $request){
     Seller::create([
-         
-        'image'=>$filename,
-        'name'=>$request->name,
-        'email'=>$request->email,
-        'address'=>$request->address,
-        'contact'=>$request->contact,
+   
+        'name'=>$request->seller_name,
+        'details'=>$request->seller_details,
    
     ]);
     return redirect()->route('seller.list');

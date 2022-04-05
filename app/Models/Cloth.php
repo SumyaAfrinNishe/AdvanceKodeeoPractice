@@ -10,5 +10,7 @@ class Cloth extends Model
     use HasFactory;
     protected $table="cloths";
     protected $guarded=[];
-   
+
+
+
 }

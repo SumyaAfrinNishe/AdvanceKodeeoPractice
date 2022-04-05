@@ -6,17 +6,19 @@ use App\Models\Cloth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Cache;
 
 class ClothController extends Controller
 {
     public function clothlist()
     {
-        $clothlists=Cloth::paginate(5);
+         $clothlists=Cloth::all();
         return view('admin.pages.Cloth.cloth-list',compact('clothlists'));
     }
+
+
     public function addCloth()
     {
-        $cloth=Cloth::all();
         return view('admin.pages.Cloth.cloth-form');
     }
     public function clothCreate(Request $request)

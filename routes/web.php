@@ -69,7 +69,8 @@ Route::post('/cloth/create',[ClothController::class,'clothCreate'])->name('cloth
 //for seller
 Route::get('/seller/list',[SellerController::class,'sellerlist'])->name('seller.list');
 Route::get('/seller/create',[SellerController::class,'sellercreate'])->name('seller.create');
-Route::post('/seller.store',[SellerController::class,'sellerstore'])->name('seller.store');
+Route::post('/seller/store',[SellerController::class,'sellerstore'])->name('seller.store');
+Route::get('/seller',[SellerController::class,'index'])->name('seller.index');
 
 Route::get('/cloth/view/{cloth_id}',[ClothController::class,'viewCloth'])->name('cloth.view');
 Route::get('/edit/cloth/{cloth_id}',[ClothController::class,'editCloth'])->name('cloth.edit');

@@ -76,7 +76,7 @@
 	
 	  </table>
 
-{{ $clothlists->links() }}
+
     
 @endsection
 
