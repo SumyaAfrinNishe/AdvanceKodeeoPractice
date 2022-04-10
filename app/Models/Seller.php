@@ -10,4 +10,6 @@ class Seller extends Model
     use HasFactory;
     protected $guarded=[];
 
+
+  
 }
