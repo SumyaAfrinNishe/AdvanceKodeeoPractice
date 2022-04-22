@@ -14,7 +14,7 @@ class ClothController extends Controller
     public function clothlist()
     {
         // throw new \Exception("Hello Nishe");
-        Log::channel('custom')->info("Hello Nishe");
+        Log::channel('custom')->alert("Hello Nishe");
          $clothlists=Cloth::all();
         return view('admin.pages.Cloth.cloth-list',compact('clothlists'));
     }
