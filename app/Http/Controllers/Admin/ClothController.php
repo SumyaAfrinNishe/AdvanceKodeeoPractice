@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Cloth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Cache;
@@ -12,6 +13,8 @@ class ClothController extends Controller
 {
     public function clothlist()
     {
+        // throw new \Exception("Hello Nishe");
+        Log::channel('custom')->info("Hello Nishe");
          $clothlists=Cloth::all();
         return view('admin.pages.Cloth.cloth-list',compact('clothlists'));
     }
