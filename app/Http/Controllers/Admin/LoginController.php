@@ -14,8 +14,30 @@ use App\Jobs\SendResetPasswordJob;
 use App\Mail\ResetPasswordEmail;
 use Illuminate\Support\Facades\Mail;
 
+use Illuminate\Support\Facades\App;
+
 class LoginController extends Controller
 {
+    //localization
+    public function test()
+    {
+        return view('test');
+    }
+
+    public function changeLanguage($local)
+    {
+       App::setlocale($local);
+       session()->put('applocale',$local);
+       return redirect()->back();
+    }
+
+    public function package()
+    {
+        $user=User::all();
+        return $user;
+    }
+
+    //login work start from here
     public function login()
     {
        return view('admin.pages.Login.login');

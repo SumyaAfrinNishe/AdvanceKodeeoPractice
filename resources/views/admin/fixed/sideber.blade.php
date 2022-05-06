@@ -47,6 +47,16 @@
     </ul>
 
     <ul class="nav navbar-nav navbar-right navbar-user">
+    <label for="">Select Language</label>
+    <div class="col-md-4">
+        <select class="form-control" size="1" name="links" onchange="window.location.href=this.value;">
+            <option value="">Select language</option>
+            <option value="{{route('language','en')}}">EN</option>
+            <option value="{{route('language','bn')}}">BN</option>
+            <option value="{{route('language','ar')}}">AR</option>
+        </select>
+        </div>
+        </label>
       <li class="dropdown messages-dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> Messages <span class="badge">7</span> <b class="caret"></b></a>
         <ul class="dropdown-menu">

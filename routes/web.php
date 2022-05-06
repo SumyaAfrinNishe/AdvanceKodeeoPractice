@@ -95,6 +95,9 @@ Route::get('/delete/user/{user_id}',[UserController::class,'deleteUser'])->name(
 Route::get('/permissions/assign/{role_id}',[RoleController::class,'assignForm'])->name('permission.assign.form');
 Route::post('/permissions/assign/store',[RoleController::class,'assignStore'])->name('permission.assign.store');
 
+Route::get('/language/{local}',[LoginController::class,'changeLanguage'])->name('language');
+Route::get('/',[LoginController::class,'test'])->name('test');
+Route::get('/package',[LoginController::class,'package'])->name('ajax.package');
 
 });
 

@@ -36,7 +36,7 @@
 	 </style>
 
      <div class="heading">
-		<h2>Category List</h2>
+		<h2>{{__('message.list')}}</h2>
 	  </div>
 	  
 	  <br>
