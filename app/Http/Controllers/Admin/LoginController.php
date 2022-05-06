@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
 
+use App\Jobs\SendResetPasswordJob;
 use App\Mail\ResetPasswordEmail;
 use Illuminate\Support\Facades\Mail;
 
@@ -124,7 +125,9 @@ class LoginController extends Controller
                 
                 $link=route('reset.password',$token);
 
-                Mail::to($request->email)->send(new ResetPasswordEmail($link));
+                // Mail::to($request->email)->send(new ResetPasswordEmail($link));
+
+                dispatch(new SendResetPasswordJob($link, $user->email));
                 return redirect()->back()->with('msg','Email sent to :'. $request->email);
             }
             catch(\Throwable $exception)
