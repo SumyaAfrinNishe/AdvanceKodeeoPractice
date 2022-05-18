@@ -18,6 +18,41 @@ use Illuminate\Support\Facades\App;
 
 class LoginController extends Controller
 {
+
+    //membership
+
+    public function membership()
+    {
+        return view('Login.membership');
+    }
+
+    public function membershipGet($type)
+    {
+        if($type == 'free')
+        {
+            //make free membership
+            $user=User::find(auth()->user()->id);
+            $user->update([
+                'membership_type'=>'free'
+            ]);
+            return redirect()->route('admin.home');
+        }
+
+        elseif ($type =='premium')
+        {
+            //decide price
+            $price =100;
+        }
+        else{
+            $price=150;
+        }
+
+        //make payment via ssl commerz
+      return view('Login.membership');
+    }
+
+
+    
     //localization
     public function test()
     {

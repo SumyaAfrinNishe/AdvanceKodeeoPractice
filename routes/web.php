@@ -41,8 +41,14 @@ use App\Http\Controllers\Admin\LoginController;
     Route::post('/reset-password/post',[LoginController::class,'resetPasswordPost'])->name('reset.password.post');
    
 
-    Route::group(['prefix'=>'/','middleware'=>'auth:web,admin'],function () {
-    Route::get('/', function () {
+    Route::group(['prefix'=>'/','middleware'=>'auth'],function () {
+
+        Route::get('/membership',[LoginController::class,'membership'])->name('membership');
+        Route::get('/get-membership/{type}',[LoginController::class,'membershipGet'])->name('membership.get');
+
+        Route::group(['middleware'=>'membership'],function(){
+    
+            Route::get('/', function () {
         return view('admin.master');
      })->name('admin.home');
 
@@ -100,5 +106,5 @@ Route::get('/',[LoginController::class,'test'])->name('test');
 Route::get('/package',[LoginController::class,'package'])->name('ajax.package');
 
 });
-
+    });
 

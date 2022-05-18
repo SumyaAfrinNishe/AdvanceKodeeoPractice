@@ -111,7 +111,7 @@
           <li><a href="#"><i class="fa fa-envelope"></i> Inbox <span class="badge">7</span></a></li>
           <li><a href="#"><i class="fa fa-gear"></i> Settings</a></li>
           <li class="divider"></li>
-          <li><a href="{{route('admin.logout')}}"><i class="fa fa-power-off"></i>{{auth()->user()->name}}</a></li>
+          <li><a href="{{route('admin.logout')}}"><i class="fa fa-power-off"></i>{{auth()->user()->name}} | {{auth()->user()->membership_type}}</a></li>
         </ul>
       </li>
     </ul>
